@@ -2,7 +2,6 @@
 
 # ---PROLOGUE---
 cd ~
-
 sudo apt update
 sudo apt upgrade
 
@@ -25,8 +24,10 @@ people_counting = "cmake build-essential pkg-config git libjpeg-dev libtiff-dev 
 
 database = "mariadb-server"
 
+error_signaling = "rpi_ws281x adafruit-circuitpython-neopixel"
+
 # list of subsystems for which packages need to be installed
-subsystems = (common people_counting database)
+subsystems = (common people_counting database error_signaling)
 
 # ---PACKAGE INSTALLATION---
 for subsystem_packages in ${subsystems[*]}
@@ -35,7 +36,6 @@ do
 done
 
 # ---OPENCV COMPILATION AND INSTALLATION---
-
 # retrieve the necessary repositories
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
@@ -68,7 +68,6 @@ sudo make install
 sudo ldconfig
 
 # ---CLEANUP---
-
 # put our swap size back to normal
 sudo sed -i -e 's/CONF_SWAPSIZE=2048/CONF_SWAPSIZE=100/g' /etc/dphys-swapfile
 sudo systemctl restart dphys-swapfile
