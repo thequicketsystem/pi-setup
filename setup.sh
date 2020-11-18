@@ -1,9 +1,12 @@
 #!/bin/bash
 
 # ---PROLOGUE---
-cd ~
+# We need this older repo for the libjasper-dev package
+echo deb http://deb.debian.org/debian jessie main | sudo tee /etc/apt/sources.d/libjasper.list
 sudo apt update
 sudo apt upgrade
+cd ~
+
 
 # increase swap space temporarily. This is important for compiling OpenCV, but
 # is also nice to have for the whole process.
