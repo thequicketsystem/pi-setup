@@ -55,6 +55,9 @@ sudo make install
 # update library links
 sudo ldconfig
 
+# ---OTHER PYTHON PACKAGES---
+pip3 install scipy imutils dlib
+
 # ---CLEANUP---
 # put our swap size back to normal
 if [ "$1" != "-ns" ];
